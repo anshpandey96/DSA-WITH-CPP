@@ -1,0 +1,26 @@
+#include <iostream>
+using namespace std;
+
+void reverseString(string &str, int start, int end)
+{
+    if (start >= end)
+        return; // Base case: when pointers cross
+
+    // Swap characters at start and end
+    swap(str[start], str[end]);
+
+    // Recursive call for the next pair
+    reverseString(str, start + 1, end - 1);
+}
+
+int main()
+{
+    string input;
+    cout << "Enter a string: ";
+    cin >> input;
+
+    reverseString(input, 0, input.length() - 1);
+
+    cout << "Reversed string: " << input << endl;
+    return 0;
+}
