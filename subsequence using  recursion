@@ -1,0 +1,39 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+// Recursive function to generate subsequences
+void generateSubsequences(int index, vector<int>& arr, vector<int>& current, vector<vector<int>>& result) {
+    if (index == arr.size()) {
+        result.push_back(current); // Store the current subsequence
+        return;
+    }
+
+    // Include the current element
+    current.push_back(arr[index]);
+    generateSubsequences(index + 1, arr, current, result);
+
+    // Exclude the current element (backtrack)
+    current.pop_back();
+    generateSubsequences(index + 1, arr, current, result);
+}
+
+int main() {
+    vector<int> arr = {1, 2, 3};
+    vector<int> current;
+    vector<vector<int>> result;
+
+    generateSubsequences(0, arr, current, result);
+
+    // Print all subsequences
+    cout << "All subsequences:\n";
+    for (const auto& subseq : result) {
+        cout << "[ ";
+        for (int num : subseq) {
+            cout << num << " ";
+        }
+        cout << "]\n";
+    }
+
+    return 0;
+}
